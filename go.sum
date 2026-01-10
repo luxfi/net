@@ -1,0 +1,10 @@
+github.com/luxfi/codec v1.1.3 h1:hK/pijaD/b3xP5ZNkGdDq26jRgFPQtYBLmAwOgxzw4c=
+github.com/luxfi/codec v1.1.3/go.mod h1:7CPyGAk8cjSYYOfSbMLfSnXXV7ucuRK6oG8Dvb/ZdWc=
+github.com/luxfi/crypto v1.17.37 h1:75ZvsRu6I36P6wb1gNO4yB846UuHojoCrSeQ48MArvU=
+github.com/luxfi/crypto v1.17.37/go.mod h1:vu+pCHdyPQZULzrA+K+lTFYrg8vOtNdu+/5Vko8RzZ0=
+github.com/luxfi/ids v1.2.8 h1:CQ6EUIDZqPDV+R754TiG5tFvD3uVM6rpNxPTSRv7IRo=
+github.com/luxfi/ids v1.2.8/go.mod h1:14vKgM828w7yqnh6z0LhNrObXHVvtyRDyWBEmWBj5i8=
+github.com/mr-tron/base58 v1.2.0 h1:T/HDJBh4ZCPbU39/+c3rRvE0uKBQlU27+QI8LJ4t64o=
+github.com/mr-tron/base58 v1.2.0/go.mod h1:BinMc/sQntlIE1frQmRFPUoPA1Zkr8VRgBdjWI2mNwc=
+golang.org/x/crypto v0.46.0 h1:cKRW/pmt1pKAfetfu+RCEvjvZkA9RimPbh7bhFjGVBU=
+golang.org/x/crypto v0.46.0/go.mod h1:Evb/oLKmMraqjZ2iQTwDwvCtJkczlDuTmdJXoZVzqU0=
