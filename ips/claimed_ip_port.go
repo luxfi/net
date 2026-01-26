@@ -7,7 +7,7 @@ import (
 	"net"
 	"net/netip"
 
-	hashing "github.com/luxfi/crypto/hash"
+	"github.com/luxfi/crypto/hash"
 	"github.com/luxfi/ids"
 	luxtls "github.com/luxfi/tls"
 	"github.com/luxfi/codec/wrappers"
@@ -64,7 +64,7 @@ func NewClaimedIPPort(
 	}
 	packer.PackFixedBytes(ip.NodeID[:])
 	packer.PackLong(timestamp)
-	ip.GossipID = hashing.ComputeHash256Array(packer.Bytes)
+	ip.GossipID = hash.ComputeHash256Array(packer.Bytes)
 	return ip
 }
 

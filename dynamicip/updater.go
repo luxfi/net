@@ -8,9 +8,8 @@ import (
 	"net/netip"
 	"time"
 
-	"github.com/luxfi/log"
-	luxlog "github.com/luxfi/log"
-	"github.com/luxfi/utils"
+	"github.com/luxfi/atomic"
+	log "github.com/luxfi/log"
 )
 
 const ipResolutionTimeout = 10 * time.Second
@@ -23,14 +22,14 @@ type Updater interface {
 	// Start periodically resolving and updating our public IP.
 	// Doesn't return until after Stop() is called.
 	// Should be called in a goroutine.
-	Dispatch(log log.Logger)
+	Dispatch(logger log.Logger)
 	// Stop resolving and updating our public IP.
 	Stop()
 }
 
 type updater struct {
 	// The IP we periodically modify.
-	dynamicIP *utils.Atomic[netip.AddrPort]
+	dynamicIP *atomic.Atomic[netip.AddrPort]
 	// Used to find out what our public IP is.
 	resolver Resolver
 	// The parent of all contexts passed into resolver.Resolve().
@@ -49,7 +48,7 @@ type updater struct {
 // every [updateFreq]. Uses [resolver] to find
 // out what our public IP is.
 func NewUpdater(
-	dynamicIP *utils.Atomic[netip.AddrPort],
+	dynamicIP *atomic.Atomic[netip.AddrPort],
 	resolver Resolver,
 	updateFreq time.Duration,
 ) Updater {
@@ -66,7 +65,7 @@ func NewUpdater(
 
 // Start updating [u.dynamicIP] every [u.updateFreq].
 // Stops when [dynamicIP.stopChan] is closed.
-func (u *updater) Dispatch(log log.Logger) {
+func (u *updater) Dispatch(logger log.Logger) {
 	ticker := time.NewTicker(u.updateFreq)
 	defer func() {
 		ticker.Stop()
@@ -85,17 +84,17 @@ func (u *updater) Dispatch(log log.Logger) {
 			newAddr, err := u.resolver.Resolve(ctx)
 			cancel()
 			if err != nil {
-				log.Warn("couldn't resolve public IP. If this machine's IP recently changed, it may be sharing the wrong public IP with peers",
-					luxlog.Err(err),
+				logger.Warn("couldn't resolve public IP. If this machine's IP recently changed, it may be sharing the wrong public IP with peers",
+					log.Err(err),
 				)
 				continue
 			}
 
 			if newAddr != oldAddr {
 				u.dynamicIP.Set(netip.AddrPortFrom(newAddr, port))
-				log.Info("updated public IP",
-					luxlog.String("oldIP", oldAddr.String()),
-					luxlog.String("newIP", newAddr.String()),
+				logger.Info("updated public IP",
+					log.String("oldIP", oldAddr.String()),
+					log.String("newIP", newAddr.String()),
 				)
 				oldAddr = newAddr
 			}
