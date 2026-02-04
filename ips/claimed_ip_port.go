@@ -7,10 +7,10 @@ import (
 	"net"
 	"net/netip"
 
+	"github.com/luxfi/codec/wrappers"
 	"github.com/luxfi/crypto/hash"
 	"github.com/luxfi/ids"
 	luxtls "github.com/luxfi/tls"
-	"github.com/luxfi/codec/wrappers"
 )
 
 const (
