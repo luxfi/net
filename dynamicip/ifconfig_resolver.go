@@ -11,7 +11,7 @@ import (
 	"net/netip"
 	"strings"
 
-	"github.com/luxfi/net/ips"
+	"github.com/luxfi/net/endpoints"
 )
 
 var _ Resolver = (*ifConfigResolver)(nil)
@@ -40,5 +40,5 @@ func (r *ifConfigResolver) Resolve(ctx context.Context) (netip.Addr, error) {
 	}
 
 	ipStr := strings.TrimSpace(string(ipBytes))
-	return ips.ParseAddr(ipStr)
+	return endpoints.ParseAddr(ipStr)
 }

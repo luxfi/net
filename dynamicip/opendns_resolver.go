@@ -9,7 +9,7 @@ import (
 	"net"
 	"net/netip"
 
-	"github.com/luxfi/net/ips"
+	"github.com/luxfi/net/endpoints"
 )
 
 const openDNSUrl = "resolver1.opendns.com:53"
@@ -43,7 +43,7 @@ func (r *openDNSResolver) Resolve(ctx context.Context) (netip.Addr, error) {
 		return netip.Addr{}, err
 	}
 	for _, ip := range resolvedIPs {
-		if addr, ok := ips.AddrFromSlice(ip); ok {
+		if addr, ok := endpoints.AddrFromSlice(ip); ok {
 			return addr, nil
 		}
 	}
