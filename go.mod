@@ -1,6 +1,6 @@
 module github.com/luxfi/net
 
-go 1.26
+go 1.26.1
 
 require (
 	github.com/luxfi/atomic v1.0.0
