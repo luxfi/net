@@ -1,6 +1,6 @@
 module github.com/luxfi/net
 
-go 1.26.1
+go 1.26.3
 
 require (
 	github.com/luxfi/atomic v1.0.0
@@ -22,7 +22,7 @@ require (
 	github.com/luxfi/cache v1.1.0 // indirect
 	github.com/luxfi/constants v1.4.3 // indirect
 	github.com/luxfi/geth v1.16.69 // indirect
-	github.com/luxfi/math v1.2.3 // indirect
+	github.com/luxfi/math v1.4.0 // indirect
 	github.com/luxfi/math/big v0.1.0 // indirect
 	github.com/luxfi/mock v0.1.0 // indirect
 	github.com/luxfi/sampler v1.0.0 // indirect
@@ -31,10 +31,10 @@ require (
 	go.uber.org/mock v0.6.0 // indirect
 	go.uber.org/multierr v1.11.0 // indirect
 	go.uber.org/zap v1.27.1 // indirect
-	golang.org/x/crypto v0.48.0 // indirect
-	golang.org/x/exp v0.0.0-20260212183809-81e46e3db34a // indirect
-	golang.org/x/sys v0.41.0 // indirect
-	gonum.org/v1/gonum v0.16.0 // indirect
+	golang.org/x/crypto v0.49.0 // indirect
+	golang.org/x/exp v0.0.0-20260312153236-7ab1446f8b90 // indirect
+	golang.org/x/sys v0.42.0 // indirect
+	gonum.org/v1/gonum v0.17.0 // indirect
 	gopkg.in/natefinch/lumberjack.v2 v2.2.1 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
