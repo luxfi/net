@@ -7,7 +7,6 @@ import (
 	"net"
 	"net/netip"
 
-	"github.com/luxfi/codec/wrappers"
 	"github.com/luxfi/crypto/hash"
 	"github.com/luxfi/ids"
 	luxtls "github.com/luxfi/tls"
@@ -15,8 +14,8 @@ import (
 
 const (
 	// Certificate length, signature length, IP, timestamp, tx ID
-	baseIPCertDescLen = 2*wrappers.IntLen + net.IPv6len + wrappers.ShortLen + wrappers.LongLen + ids.IDLen
-	preimageLen       = ids.IDLen + wrappers.LongLen
+	baseIPCertDescLen = 2*IntLen + net.IPv6len + ShortLen + LongLen + ids.IDLen
+	preimageLen       = ids.IDLen + LongLen
 )
 
 // A self contained proof that a peer is claiming ownership of an IPPort at a
@@ -59,12 +58,12 @@ func NewClaimedIPPort(
 		NodeID:    ids.NodeIDFromCert(idsCert),
 	}
 
-	packer := wrappers.Packer{
+	p := packer{
 		Bytes: make([]byte, preimageLen),
 	}
-	packer.PackFixedBytes(ip.NodeID[:])
-	packer.PackLong(timestamp)
-	ip.GossipID = hash.ComputeHash256Array(packer.Bytes)
+	p.PackFixedBytes(ip.NodeID[:])
+	p.PackLong(timestamp)
+	ip.GossipID = hash.ComputeHash256Array(p.Bytes)
 	return ip
 }
 

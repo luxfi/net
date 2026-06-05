@@ -11,7 +11,6 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/luxfi/codec/wrappers"
 	"github.com/luxfi/crypto/hash"
 	"github.com/luxfi/ids"
 	"github.com/luxfi/staking"
@@ -261,8 +260,8 @@ func (e Endpoint) Equal(other Endpoint) bool {
 func (e Endpoint) Bytes() []byte {
 	switch e.Type {
 	case EndpointTypeIP:
-		p := wrappers.Packer{
-			Bytes: make([]byte, 1+net.IPv6len+wrappers.ShortLen),
+		p := packer{
+			Bytes: make([]byte, 1+net.IPv6len+ShortLen),
 		}
 		p.PackByte(byte(EndpointTypeIP))
 		addrBytes := e.AddrPort.Addr().As16()
@@ -271,7 +270,7 @@ func (e Endpoint) Bytes() []byte {
 		return p.Bytes
 
 	case EndpointTypeRNS:
-		p := wrappers.Packer{
+		p := packer{
 			Bytes: make([]byte, 1+RNSDestinationLen),
 		}
 		p.PackByte(byte(EndpointTypeRNS))
@@ -280,8 +279,8 @@ func (e Endpoint) Bytes() []byte {
 
 	default: // EndpointTypeHostname
 		hostBytes := []byte(e.Hostname)
-		p := wrappers.Packer{
-			Bytes: make([]byte, 1+wrappers.ShortLen+len(hostBytes)+wrappers.ShortLen),
+		p := packer{
+			Bytes: make([]byte, 1+ShortLen+len(hostBytes)+ShortLen),
 		}
 		p.PackByte(byte(EndpointTypeHostname))
 		p.PackShort(uint16(len(hostBytes)))
@@ -328,12 +327,12 @@ func NewClaimedEndpoint(
 	}
 
 	// Compute GossipID from nodeID + timestamp
-	packer := wrappers.Packer{
+	p := packer{
 		Bytes: make([]byte, preimageLen),
 	}
-	packer.PackFixedBytes(ce.NodeID[:])
-	packer.PackLong(timestamp)
-	ce.GossipID = hash.ComputeHash256Array(packer.Bytes)
+	p.PackFixedBytes(ce.NodeID[:])
+	p.PackLong(timestamp)
+	ce.GossipID = hash.ComputeHash256Array(p.Bytes)
 
 	// For backward compatibility with IP endpoints
 	if endpoint.IsIP() {

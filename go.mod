@@ -4,7 +4,6 @@ go 1.26.3
 
 require (
 	github.com/luxfi/atomic v1.0.0
-	github.com/luxfi/codec v1.1.3
 	github.com/luxfi/crypto v1.19.0
 	github.com/luxfi/ids v1.2.9
 	github.com/luxfi/log v1.4.1
