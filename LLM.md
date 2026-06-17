@@ -1,4 +1,4 @@
-# LLM.md - Hanzo Net
+# Hanzo Net
 
 ## Overview
 Go module: github.com/luxfi/net
