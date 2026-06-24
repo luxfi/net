@@ -7,7 +7,7 @@ require (
 	github.com/luxfi/crypto v1.19.0
 	github.com/luxfi/ids v1.2.9
 	github.com/luxfi/log v1.4.1
-	github.com/luxfi/staking v1.5.0
+	github.com/luxfi/staking v1.5.1
 	github.com/luxfi/tls v1.0.3
 	github.com/luxfi/utils v1.1.4
 	github.com/stretchr/testify v1.11.1
