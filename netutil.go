@@ -78,11 +78,11 @@ func GetIPPort(uri string) (netip.AddrPort, error) {
 }
 
 // SplitLuxgoRPCURI splits the RPC URI into `endpoint` and `chain`.
-// Reverse operation of `fmt.Sprintf("%s/ext/bc/%s", endpoint, chain)`.
+// Reverse operation of `fmt.Sprintf("%s/v1/bc/%s", endpoint, chain)`.
 // Returns the `uri` and `chain` as strings, or an error if the request URI is invalid.
 func SplitLuxgoRPCURI(requestURI string) (string, string, error) {
 	// Define the regex pattern
-	pattern := `^(https?://[^/]+)/ext/bc/([^/]+)/rpc$`
+	pattern := `^(https?://[^/]+)/v1/bc/([^/]+)/rpc$`
 	regex := regexp.MustCompile(pattern)
 
 	// Match the pattern
