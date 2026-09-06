@@ -12,7 +12,7 @@ import (
 	"github.com/stretchr/testify/require"
 
 	log "github.com/luxfi/log"
-	"github.com/luxfi/utils"
+	"github.com/luxfi/util"
 )
 
 var _ Resolver = (*mockResolver)(nil)
